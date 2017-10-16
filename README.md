@@ -5,8 +5,7 @@ World Weather Online iOS Api Sample
 A Simple weather api demo to show how to use the "world weather online apis".
 
  * Simple and easy UI 
- * Already configured api models (POJOs)
- * Access weather apis with Retrofit Library
+ * Access weather apis with WeatherAPIModule Library
  * Uses gson for adapter factory
 
 This sample app is very easy to understand and you can simply
@@ -39,122 +38,94 @@ your favourite http client:-
     http://api.worldweatheronline.com/premium/v1/ski.ashx?key=API_KEY&q=52.233,-90.75&format=json&includelocation=yes  	
   	
 But We have even make your journey more easier with this sample app :)  	
-These are the simple steps to get started with retrofit library approach:-
+These are the simple steps to get started with WeatherAPIModule library approach:-
 
-1)Add Permission
+1)Add Required Frameworks
 -------
- 
-Add these permissions into your `AndroidManifest.xml`
-```xml
-<uses-permission android:name="android.permission.INTERNET"/>
-```
+Foundation.framework
+CFNetwork.framework
+UIKit.framework
 
-2)Add Api Models
+2)Add Required Header File To Custome Project 
 -------
-Copy complete package <b><i>com.worldweatheronline.domain</i></b> package in your code base.
-<br>A domain package has two sub package:
-<br><b>a) entity </b>(It contains data models i.e. pojos of the api)
-<br><b>b) rest </b>(it contains classes related to retrofit lib)
-in your package 
+#import <WeatherAPIModule.h>
+#import <WeatherUtilities.h>
 
 That's it! You can now use the api easily :)
 
-__To Access Weather Api__
-```java
-      new RestClient().apiService().weather("London")
-          .enqueue(new Callback<Api>() {
-            @Override public void onResponse(Call<Api> call, Response<Api> response) {
-              com.worldweatheronline.domain.entity.weather.Api weatherApi = response.body();
-                //do whatever you want to do ...
-            }
-  
-            @Override
-            public void onFailure(Call<com.worldweatheronline.domain.entity.weather.Api> call,
-                Throwable t) {
-                //handle on failure case
-            }
-          });
-```
-__To Access Past Weather Api__
-```java
-      new RestClient().apiService().pastWeather("Paris", "2017-08-15", "2017-08-20")//city, startdate, enddate
-          .enqueue(new Callback<Api>() {
-            @Override public void onResponse(Call<Api> call, Response<Api> response) {
-              com.worldweatheronline.domain.entity.weather.Api weatherApi = response.body();
-                //do whatever you want to do ...
-            }
-  
-            @Override
-            public void onFailure(Call<com.worldweatheronline.domain.entity.weather.Api> call,
-                Throwable t) {
-                //handle on failure case
-            }
-          });
-```
+-----------
+Add WeatherAPIModule Variable 
+@property WeatherAPIModule *network;
+-----------
+__To Access Local Weather Api__
+
+- (IBAction)localWeatherBtnPressed:(id)sender {
+    self.apiNameCategory = LocalWeather;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        });
+        [self.network localWeatherAPI];
+    });
+}
+
 __To Access Marine Weather Api__
-```java
-      new RestClient().apiService().marine("31.50,-12.50")//latitude,longitude
-          .enqueue(new Callback<Api>() {
-            @Override public void onResponse(Call<Api> call, Response<Api> response) {
-              com.worldweatheronline.domain.entity.weather.Api weatherApi = response.body();
-                //do whatever you want to do ...
-            }
-  
-            @Override
-            public void onFailure(Call<com.worldweatheronline.domain.entity.weather.Api> call,
-                Throwable t) {
-                //handle on failure case
-            }
-          });
-```
-__To Access Past Marine Weather Api__
-```java
-      new RestClient().apiService().pastMarineWeather("31.50,-12.50", "2017-08-15", "2017-08-20")
-          .enqueue(new Callback<Api>() {
-            @Override public void onResponse(Call<Api> call, Response<Api> response) {
-              com.worldweatheronline.domain.entity.weather.Api weatherApi = response.body();
-                //do whatever you want to do ...
-            }
-  
-            @Override
-            public void onFailure(Call<com.worldweatheronline.domain.entity.weather.Api> call,
-                Throwable t) {
-                //handle on failure case
-            }
-          });
-```
+
+- (IBAction)marinWeatherBtnPressed:(id)sender {
+    self.apiNameCategory = MarineWeather;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        });
+        [self.network marinWeatherAPI];
+    });
+}
+
 __To Access Timezone Api__
-```java
-      new RestClient().apiService().timezone("Paris")
-          .enqueue(new Callback<Api>() {
-            @Override public void onResponse(Call<Api> call, Response<Api> response) {
-              com.worldweatheronline.domain.entity.weather.Api weatherApi = response.body();
-                //do whatever you want to do ...
-            }
-  
-            @Override
-            public void onFailure(Call<com.worldweatheronline.domain.entity.weather.Api> call,
-                Throwable t) {
-                //handle on failure case
-            }
-          });
-```
+
+- (IBAction)timeZoneBtnPressed:(id)sender {
+    self.apiNameCategory = TimezoneWeather;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        });
+        [self.network timeZoneAPI];
+    });
+}
+
+
 __To Access Ski Api__
-```java
-      new RestClient().apiService().ski("52.233,-90.75")//latitude,longitude
-          .enqueue(new Callback<Api>() {
-            @Override public void onResponse(Call<Api> call, Response<Api> response) {
-              com.worldweatheronline.domain.entity.weather.Api weatherApi = response.body();
-                //do whatever you want to do ...
-            }
-  
-            @Override
-            public void onFailure(Call<com.worldweatheronline.domain.entity.weather.Api> call,
-                Throwable t) {
-                //handle on failure case
-            }
-          });
-```
+
+- (IBAction)skiWeatherBtnPressed:(id)sender {
+    self.apiNameCategory = SkiWeather;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        });
+        [self.network skiAPI];
+    });
+}
+
+### Network Failer Callback
+
+-(void)isNetworkCommunicationFailed:(BOOL)isfailed
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Network Error"
+                                     message:@"Can't connect to the server for now. Please confirm your network status."
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* okButton = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
 
 License
 -------
