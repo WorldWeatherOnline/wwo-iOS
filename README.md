@@ -1,1 +1,1 @@
-# World Weather Online Api Sample
+# World Weather Online Api iOS Sample
