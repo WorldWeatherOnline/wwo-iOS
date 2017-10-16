@@ -42,6 +42,7 @@ These are the simple steps to get started with WeatherAPIModule library approach
 
 1)Add Required Frameworks
 -------
+```xml
 Foundation.framework
 CFNetwork.framework
 UIKit.framework
@@ -108,7 +109,7 @@ __To Access Ski Api__
 
 ### Network Failer Callback
 
--(void)isNetworkCommunicationFailed:(BOOL)isfailed
+-(void) isNetworkCommunicationFailed:(BOOL)isfailed
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBProgressHUD hideHUDForView:self.view animated:YES];
