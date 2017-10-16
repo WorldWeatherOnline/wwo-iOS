@@ -52,8 +52,9 @@ UIKit.framework
 ```xml
 #import <WeatherAPIModule.h>
 #import <WeatherUtilities.h>
-```
+
 That's it! You can now use the api easily :)
+```
 3)Usage
 -----------
 Add WeatherAPIModule Variable 
