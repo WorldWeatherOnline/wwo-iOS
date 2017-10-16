@@ -74,7 +74,7 @@ __To Access Local Weather Api__
 }
 ```
 __To Access Marine Weather Api__
-
+```objective c
 - (IBAction)marinWeatherBtnPressed:(id)sender {
     self.apiNameCategory = MarineWeather;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -84,9 +84,9 @@ __To Access Marine Weather Api__
         [self.network marinWeatherAPI];
     });
 }
-
+```
 __To Access Timezone Api__
-
+```objective c
 - (IBAction)timeZoneBtnPressed:(id)sender {
     self.apiNameCategory = TimezoneWeather;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -96,10 +96,9 @@ __To Access Timezone Api__
         [self.network timeZoneAPI];
     });
 }
-
-
+```
 __To Access Ski Api__
-
+```objective c
 - (IBAction)skiWeatherBtnPressed:(id)sender {
     self.apiNameCategory = SkiWeather;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -109,7 +108,7 @@ __To Access Ski Api__
         [self.network skiAPI];
     });
 }
-
+```
 ### Network Failer Callback
 
 -(void) isNetworkCommunicationFailed:(BOOL)isfailed
