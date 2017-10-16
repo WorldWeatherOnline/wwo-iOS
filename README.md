@@ -110,7 +110,7 @@ __To Access Ski Api__
 }
 ```
 ### Network Failer Callback
-
+```objective c
 -(void) isNetworkCommunicationFailed:(BOOL)isfailed
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -128,7 +128,7 @@ __To Access Ski Api__
         [self presentViewController:alert animated:YES completion:nil];
     });
 }
-
+```
 
 License
 -------
