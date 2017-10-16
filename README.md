@@ -1,5 +1,5 @@
 
-World Weather Online Api Sample
+World Weather Online iOS Api Sample
 ============
 
 A Simple weather api demo to show how to use the "world weather online apis".
