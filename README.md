@@ -60,9 +60,9 @@ Add WeatherAPIModule Variable
 ```xml
 @property WeatherAPIModule *network;
 ```
------------
-__To Access Local Weather Api__
 
+__To Access Local Weather Api__
+```objective c
 - (IBAction)localWeatherBtnPressed:(id)sender {
     self.apiNameCategory = LocalWeather;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -72,7 +72,7 @@ __To Access Local Weather Api__
         [self.network localWeatherAPI];
     });
 }
-
+```
 __To Access Marine Weather Api__
 
 - (IBAction)marinWeatherBtnPressed:(id)sender {
