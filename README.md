@@ -54,10 +54,12 @@ UIKit.framework
 #import <WeatherUtilities.h>
 ```
 That's it! You can now use the api easily :)
-
+3)Usage
 -----------
 Add WeatherAPIModule Variable 
+```xml
 @property WeatherAPIModule *network;
+```
 -----------
 __To Access Local Weather Api__
 
